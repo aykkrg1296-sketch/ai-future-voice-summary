@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AIのこれからについて音声まとめ</title>
-  <meta name="description" content="AIのこれからについての音声を、ほぼ文字起こしに近い流れ・本質・要約・伝え方に整理した共有用ページ。">
+  <title>AIは何を変えてしまうのか</title>
+  <meta name="description" content="AIのこれからについて語られた音声を、読み物型レポートとして整理。仕事、努力、中間層、人間の価値がどう変わるのかを考える。">
   <style>
     :root {
       --ink: #202124;
-      --muted: #62676f;
-      --line: #d9dee7;
+      --body: #34383f;
+      --muted: #6a7079;
       --paper: #fbfaf7;
       --panel: #ffffff;
+      --line: #ded7ce;
       --accent: #b84a3a;
-      --accent-2: #2f6f73;
-      --accent-3: #78633d;
-      --soft: #f1e7dd;
-      --soft-2: #e3eef0;
-      --shadow: 0 14px 34px rgba(32, 33, 36, .08);
+      --teal: #2f6f73;
+      --soft: #f2e6dc;
+      --soft-teal: #e4eff0;
+      --shadow: 0 16px 42px rgba(32, 33, 36, .08);
     }
 
     * { box-sizing: border-box; }
@@ -27,12 +27,16 @@
     body {
       margin: 0;
       color: var(--ink);
-      background:
-        linear-gradient(180deg, rgba(241,231,221,.78), rgba(251,250,247,.88) 32rem),
-        var(--paper);
+      background: var(--paper);
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "YuGothic", "Noto Sans JP", sans-serif;
-      line-height: 1.8;
+      line-height: 1.9;
       letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
 
     a { color: inherit; }
@@ -42,116 +46,80 @@
       margin: 0 auto;
     }
 
+    .article {
+      width: min(800px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
     header {
-      min-height: 92vh;
-      display: grid;
-      align-items: center;
-      padding: 48px 0 32px;
+      padding: 46px 0 0;
+      background: linear-gradient(180deg, #f1e5da 0%, #fbfaf7 78%);
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr);
       gap: 44px;
       align-items: center;
+      min-height: 86vh;
+      padding-bottom: 42px;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       color: var(--accent);
-      font-weight: 700;
-      font-size: .9rem;
+      font-size: .92rem;
+      font-weight: 800;
       margin: 0 0 18px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: var(--accent);
-      display: inline-block;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.35rem, 6vw, 5.4rem);
-      line-height: 1.05;
+      font-size: clamp(2.25rem, 5.8vw, 5.2rem);
+      line-height: 1.07;
       letter-spacing: 0;
-      max-width: 10.5em;
+      max-width: 9.2em;
     }
 
     .lead {
-      margin: 26px 0 0;
-      font-size: clamp(1.05rem, 2vw, 1.32rem);
-      color: #363a40;
-      max-width: 720px;
-    }
-
-    .hero-note {
-      margin-top: 26px;
-      padding-left: 18px;
-      border-left: 4px solid var(--accent);
-      color: #4b3b34;
+      margin: 24px 0 0;
+      color: #353941;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
       max-width: 680px;
-      font-weight: 650;
     }
 
-    .signal {
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(32,33,36,.08);
+    .hero img {
+      border-radius: 8px;
       box-shadow: var(--shadow);
-      border-radius: 8px;
-      padding: 24px;
+      border: 1px solid rgba(32, 33, 36, .08);
+      object-fit: cover;
+      aspect-ratio: 16 / 9;
     }
 
-    .wave {
-      display: grid;
-      grid-template-columns: repeat(28, 1fr);
-      gap: 5px;
-      align-items: end;
-      height: 152px;
-      margin: 4px 0 24px;
-      padding: 18px;
-      background: linear-gradient(135deg, #2f6f73, #263d44);
-      border-radius: 8px;
-      overflow: hidden;
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
     }
 
-    .wave span {
-      display: block;
-      height: var(--h);
-      min-height: 12px;
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 12px;
       border-radius: 999px;
-      background: linear-gradient(180deg, #fff7dc, #e6986c);
-      opacity: .92;
-    }
-
-    .signal dl {
-      display: grid;
-      gap: 14px;
-      margin: 0;
-    }
-
-    .signal dt {
-      color: var(--muted);
-      font-size: .82rem;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(32,33,36,.08);
+      color: #4e555d;
+      font-size: .9rem;
       font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    .signal dd {
-      margin: 0;
-      font-weight: 750;
-      font-size: 1.06rem;
     }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 3;
-      background: rgba(251,250,247,.94);
+      z-index: 5;
+      background: rgba(251, 250, 247, .94);
       border-top: 1px solid rgba(32,33,36,.08);
       border-bottom: 1px solid rgba(32,33,36,.08);
       backdrop-filter: blur(14px);
@@ -167,37 +135,81 @@
     nav a {
       flex: 0 0 auto;
       text-decoration: none;
+      color: #3e454d;
       font-size: .92rem;
-      font-weight: 700;
+      font-weight: 800;
       padding: 8px 12px;
       border-radius: 999px;
-      color: #384047;
     }
 
-    nav a:hover {
-      background: var(--soft-2);
-    }
+    nav a:hover { background: var(--soft-teal); }
 
-    main { padding: 56px 0 80px; }
+    main { padding: 58px 0 82px; }
 
-    section {
-      margin: 0 0 64px;
-    }
+    section { margin-bottom: 72px; }
 
     h2 {
-      margin: 0 0 22px;
-      font-size: clamp(1.55rem, 3vw, 2.35rem);
-      line-height: 1.2;
+      margin: 0 0 20px;
+      font-size: clamp(1.65rem, 3.2vw, 2.42rem);
+      line-height: 1.23;
       letter-spacing: 0;
     }
 
     h3 {
-      margin: 0 0 12px;
-      font-size: 1.18rem;
-      line-height: 1.35;
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      line-height: 1.38;
+      letter-spacing: 0;
     }
 
-    p { margin: 0 0 14px; }
+    p { margin: 0 0 16px; color: var(--body); }
+
+    .opening p,
+    .article p {
+      font-size: clamp(1.02rem, 1.7vw, 1.12rem);
+    }
+
+    .drop {
+      font-size: clamp(1.18rem, 2vw, 1.38rem);
+      line-height: 1.75;
+      color: #2d3036;
+      font-weight: 700;
+    }
+
+    .image-band {
+      width: min(1000px, calc(100% - 32px));
+      margin: 58px auto;
+    }
+
+    .image-band img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(32,33,36,.08);
+      box-shadow: var(--shadow);
+    }
+
+    .caption {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .pull {
+      margin: 38px 0;
+      padding: 24px 26px;
+      border-left: 5px solid var(--accent);
+      background: #fffdf9;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(32,33,36,.05);
+    }
+
+    .pull p {
+      margin: 0;
+      color: #302b28;
+      font-size: clamp(1.2rem, 2.4vw, 1.72rem);
+      line-height: 1.55;
+      font-weight: 850;
+    }
 
     .grid {
       display: grid;
@@ -206,41 +218,24 @@
     }
 
     .card,
-    .quote,
-    .transcript-block {
+    .transcript-block,
+    .note {
       background: var(--panel);
       border: 1px solid rgba(32,33,36,.09);
       border-radius: 8px;
-      box-shadow: 0 8px 22px rgba(32, 33, 36, .045);
+      box-shadow: 0 8px 24px rgba(32,33,36,.045);
     }
 
     .card { padding: 20px; }
 
-    .card strong {
-      color: var(--accent);
-    }
+    .card p,
+    .note p,
+    .transcript-block p { font-size: 1rem; }
 
-    .summary {
-      display: grid;
-      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .big-answer {
-      background: #243d42;
-      color: #fffaf2;
-      border-radius: 8px;
-      padding: 28px;
-      display: grid;
-      align-content: center;
-    }
-
-    .big-answer p {
-      font-size: clamp(1.22rem, 2.7vw, 2rem);
-      line-height: 1.45;
-      font-weight: 800;
-      margin: 0;
+    .note {
+      padding: 20px;
+      background: var(--soft);
+      border-color: #dccabe;
     }
 
     .list {
@@ -253,21 +248,10 @@
 
     .list li {
       padding: 14px 16px;
-      background: rgba(255,255,255,.72);
+      background: #fff;
       border: 1px solid rgba(32,33,36,.08);
       border-radius: 8px;
-    }
-
-    .quote {
-      padding: 22px;
-      border-left: 5px solid var(--accent);
-      color: #332b28;
-      background: #fffdf9;
-    }
-
-    .quote p {
-      font-size: 1.08rem;
-      font-weight: 700;
+      color: var(--body);
     }
 
     .timeline {
@@ -277,17 +261,17 @@
 
     .timeline article {
       display: grid;
-      grid-template-columns: 86px minmax(0, 1fr);
+      grid-template-columns: 76px minmax(0, 1fr);
       gap: 18px;
       padding: 18px;
-      background: rgba(255,255,255,.76);
+      background: #fff;
       border: 1px solid rgba(32,33,36,.08);
       border-radius: 8px;
     }
 
     .time {
-      color: var(--accent-2);
-      font-weight: 850;
+      color: var(--teal);
+      font-weight: 900;
       font-size: .95rem;
     }
 
@@ -296,36 +280,21 @@
       margin-bottom: 16px;
     }
 
-    .transcript-block h3 {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
     .tag {
       display: inline-flex;
       align-items: center;
       min-height: 24px;
       padding: 2px 8px;
       border-radius: 999px;
-      background: var(--soft-2);
+      background: var(--soft-teal);
       color: #2f5f63;
       font-size: .78rem;
       font-weight: 800;
     }
 
     .transcript {
-      color: #373b40;
       white-space: pre-wrap;
-    }
-
-    .notice {
-      padding: 18px;
-      background: var(--soft);
-      border: 1px solid #dcc9b8;
-      border-radius: 8px;
-      color: #4b3b34;
+      color: #373b40;
     }
 
     footer {
@@ -335,17 +304,17 @@
       font-size: .92rem;
     }
 
+    footer p { color: var(--muted); font-size: .92rem; }
+
     @media (max-width: 860px) {
-      header { min-height: auto; }
       .hero,
-      .summary {
-        grid-template-columns: 1fr;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid,
       .timeline article {
         grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
       }
     }
   </style>
@@ -354,152 +323,164 @@
   <header>
     <div class="shell hero">
       <div>
-        <p class="eyebrow">AIのこれからについて音声まとめ</p>
-        <h1>恐怖感と喪失感を、言葉に戻す。</h1>
-        <p class="lead">この音声で語られていたのは、AIによって仕事や社会がただ便利になる話ではなく、人間の価値・中間層・所属・お金・幸せの前提が一気に揺さぶられるかもしれない、という危機感です。</p>
-        <p class="hero-note">怖さの正体は「AIがすごい」ではなく、「今まで守ってくれていた仕事・努力・役割・常識が、負荷試験にかけられる」という感覚でした。</p>
-      </div>
-      <aside class="signal" aria-label="音声概要">
-        <div class="wave" aria-hidden="true">
-          <span style="--h:34%"></span><span style="--h:62%"></span><span style="--h:41%"></span><span style="--h:78%"></span><span style="--h:55%"></span><span style="--h:92%"></span><span style="--h:38%"></span><span style="--h:70%"></span><span style="--h:46%"></span><span style="--h:84%"></span><span style="--h:58%"></span><span style="--h:96%"></span><span style="--h:44%"></span><span style="--h:66%"></span><span style="--h:31%"></span><span style="--h:80%"></span><span style="--h:52%"></span><span style="--h:88%"></span><span style="--h:36%"></span><span style="--h:73%"></span><span style="--h:49%"></span><span style="--h:90%"></span><span style="--h:60%"></span><span style="--h:42%"></span><span style="--h:76%"></span><span style="--h:53%"></span><span style="--h:69%"></span><span style="--h:39%"></span>
+        <p class="eyebrow">読み物型レポート / AQUAVoice音声まとめ</p>
+        <h1>AIは何を変えてしまうのか</h1>
+        <p class="lead">便利さや効率化だけでは語りきれない。音声の中にあったのは、仕事、努力、中間層、人間の価値が測り直されるかもしれないという危機感だった。</p>
+        <div class="meta">
+          <span class="pill">音声6本 / 約35分</span>
+          <span class="pill">テーマ: AIと社会変化</span>
+          <span class="pill">挿絵: Image2生成</span>
         </div>
-        <dl>
-          <div><dt>素材</dt><dd>AQUAVoice音声 6本 / 約35分</dd></div>
-          <div><dt>主題</dt><dd>AI時代の社会変化と人間の生存戦略</dd></div>
-          <div><dt>読後に残すもの</dt><dd>恐怖をあおるより、向き合うための言葉</dd></div>
-        </dl>
-      </aside>
+      </div>
+      <img src="assets/hero-ai-stress-test-1400.png" alt="仕事の足場がAIによって測り直されることを表した抽象的な挿絵">
     </div>
   </header>
 
   <nav>
     <div class="shell">
-      <a href="#one">一言で</a>
-      <a href="#talk">何を喋っていたか</a>
-      <a href="#essence">本質</a>
+      <a href="#column">読み物</a>
+      <a href="#structure">危機感の構造</a>
       <a href="#summary">要約</a>
-      <a href="#communicate">伝え方</a>
+      <a href="#talk">音声の流れ</a>
       <a href="#transcript">文字起こしメモ</a>
     </div>
   </nav>
 
-  <main class="shell">
-    <section id="one" class="summary">
-      <div class="big-answer">
-        <p>AIは「便利な道具」ではなく、人間社会の前提を測り直す負荷試験になる。</p>
+  <main>
+    <section id="column" class="article opening">
+      <p class="drop">AIについての議論は、便利さや効率化の話として語られることが多い。けれど、この音声で語られていたのは、もっと根本的な変化だった。</p>
+      <p>AIは仕事を速くする。資料を作る。分析をする。文章を書く。今まで人が時間をかけていた作業を、驚くほど短い時間で終わらせる。</p>
+      <p>それだけ聞けば、明るい話に見える。面倒なことが減り、人はもっと自由になれる。仕事に追われる時間が減り、本来考えるべきことや感じるべきことに時間を使えるようになる。そういう未来も、たしかにある。</p>
+      <p>でも音声の中で繰り返し出てきたのは、そこにある別の側面だった。AIは、ただ作業を代わるだけではない。人間が何に価値を出しているのかを、見えやすくしてしまう。</p>
+      <div class="pull">
+        <p>AIは、人間社会の前提を測り直す「負荷試験」になる。</p>
       </div>
-      <div class="card">
-        <h2>一言でいうと</h2>
-        <p>音声全体で語られていたのは、AIによって「できる人がもっとできる」「中間層の仕事が薄くなる」「お金・職能・所属・幸せの基準が変わる」という未来への危機感です。</p>
-        <p>ただし、結論は絶望だけではありません。波を止めることは難しいからこそ、現実を見られる人を増やすこと、外貨を稼ぐ力やコミュニティを持つこと、人間に残る感覚・関係性・自然に近いものへ戻ることが大事だ、という話に着地しています。</p>
+      <p>この言葉が、音声全体の中心にある。負荷試験とは、どこまで耐えられるのか、どこに弱さがあるのかを確かめるために、あえて強い力をかけることだ。</p>
+      <p>AIが社会に入ることで、仕事の仕組み、人の能力、会社の中で守られていた役割、今まで見えにくかった価値の差が、急に表に出てくる。誰が本当に判断できるのか。誰が場を動かせるのか。誰が人に信頼されているのか。誰がAIを使って何倍にも強くなれるのか。</p>
+      <p>逆に、これまで肩書きや分業や人手不足によって成立していた仕事も、AIによって薄くなるかもしれない。そこで語られていたのは、「AIに仕事を奪われる」という単純な恐怖ではなかった。もっと静かで、もっと構造的な危機感だった。</p>
+    </section>
+
+    <figure class="image-band">
+      <img src="assets/tasks-dissolve-1200.png" alt="AIによって作業が光の流れになり、人間的な価値が残ることを表した挿絵">
+      <figcaption class="caption">作業は速くなる。一方で、判断、関係性、現場感、身体性のような価値はむしろ見えやすくなる。</figcaption>
+    </figure>
+
+    <section class="article">
+      <h2>中間層が薄くなる、という感覚</h2>
+      <p>音声では、「中間層がどんどんなくなっていく」という話が出てくる。これは、所得だけの話ではない。仕事の中間層、職能の中間層、会社の中でなんとなく成立していた役割の中間層のことでもある。</p>
+      <p>たとえば、資料をまとめる。簡単な分析をする。言われたことを形にする。調整する。調べる。作業を進める。これらは今まで、多くの人の仕事を支えていた。</p>
+      <p>けれどAIが入ると、その多くは自動化される。しかも、ただ置き換わるだけではない。AIを使いこなす少数の人が、今まで何人も必要だった仕事をまとめて進められるようになる。</p>
+      <p>だから音声では、「2割の人だけで仕事が回るのではないか」という表現が出てくる。これは極端な予測かもしれない。でも、この危機感の核はそこにある。仕事が消えるというより、仕事を回す人数の前提が変わる。</p>
+      <p>そして怖いのは、変化がゆっくりではないことだ。AIのモデルが変わるたびに、できることが一段増える。今よりもっと自律的に動くAIが来たとき、社会のループはさらに速くなる。世界が10倍で進むのに、自分のいる場所だけ1.2倍で進むようなことが起きたら、差は一気に開く。</p>
+    </section>
+
+    <section id="structure" class="article">
+      <h2>危機感の正体</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>1. 能力差が隠れにくくなる</h3>
+          <p>AIは、人が本当にどこで価値を出しているのかを見えやすくする。判断、構想、編集、関係づくりの差が表に出る。</p>
+        </article>
+        <article class="card">
+          <h3>2. 仕事の人数感が変わる</h3>
+          <p>少人数とAIで大きな仕事が回るようになると、今までの組織や役割の前提が揺らぐ。</p>
+        </article>
+        <article class="card">
+          <h3>3. 国や会社の速度差が広がる</h3>
+          <p>AIを前提に動く場所と、従来の速度で動く場所の差が大きくなり、機会損失が膨らむ。</p>
+        </article>
       </div>
     </section>
 
-    <section id="talk">
-      <h2>何を喋っていたか</h2>
+    <section class="article">
+      <h2>それでも、絶望だけではない</h2>
+      <p>音声の中には、厳しい言葉が多い。中間層がなくなる。ノアの方舟に乗れる人と乗れない人に分かれる。世界は急加速するのに、日本だけ遅れるかもしれない。そういう危機感がある。</p>
+      <p>でも同時に、人間は適応してきたという話も出てくる。過去にも、技術や文化の変化によって職能が大きく変わった。残る人もいれば、別の仕事へ移る人もいた。社会は痛みを伴いながらも、別の形へ動いてきた。</p>
+      <p>そしてAIによって、すべての人間的な価値が消えるわけではない。むしろ、作業が速くなるほど、人間が何を大切にするのかが問われる。</p>
+      <p>自然に近いもの。身体性のあるもの。人が安心する場。誰かの不安を受け止める力。感性。信頼。コミュニティ。遊び。そういうものは、単なる作業効率とは別の価値として残っていく可能性がある。</p>
+    </section>
+
+    <figure class="image-band">
+      <img src="assets/future-paths-1200.png" alt="AI時代の複数の進路と人間的な価値を表した挿絵">
+      <figcaption class="caption">問いは「AIに勝つか」ではなく、「AI時代に、どこで人間として価値を渡すか」へ移っていく。</figcaption>
+    </figure>
+
+    <section class="article">
+      <h2>人に伝えるなら、どう言えばいいのか</h2>
+      <p>この話は、伝え方を間違えると、ただの怖い話になる。「AIで仕事がなくなる」「乗り遅れたら終わる」と言うだけでは、相手は身構える。危機感は伝わっても、考える入口にはなりにくい。</p>
+      <p>届きやすくするなら、こう言い換えたほうがいい。</p>
+      <div class="pull">
+        <p>AIは、仕事を奪うだけではなく、人間がどこで価値を出しているのかを見えやすくする。</p>
+      </div>
+      <p>だから必要なのは、怖がらせることではなく、価値の置き場所を見直すことだ。これからの変化をどう受け止めるのか。自分たちは何を準備するのか。どんな仕事や関係性を残したいのか。</p>
+      <p>この音声は、その問いを始めるための材料として残しておく価値がある。</p>
+    </section>
+
+    <section id="summary" class="article">
+      <h2>要約</h2>
+      <ul class="list">
+        <li><strong>AIは負荷試験。</strong> 人間が今まで積んできた職能や価値を丸裸にし、必要とされる人とそうでない人の差を広げる。</li>
+        <li><strong>仕事は少人数で回る可能性がある。</strong> AIを使う少数の人が、これまで複数人で担っていた仕事を進められるようになる。</li>
+        <li><strong>中間層の仕事が薄くなる。</strong> 作業、調整、分析、資料化などの役割は、AIによって大きく変わる。</li>
+        <li><strong>日本の遅れがリスク。</strong> 世界がAIで急加速する中、適応の遅い場所では機会損失が大きくなる。</li>
+        <li><strong>人間的な価値は残る。</strong> 判断、信頼、感性、身体性、コミュニティ、場づくりの価値はむしろ問われる。</li>
+        <li><strong>伝える目的は煽ることではない。</strong> 現実を見て、自分たちの価値の置き場所を考え直すために共有する。</li>
+      </ul>
+    </section>
+
+    <section id="talk" class="article">
+      <h2>音声で語られていた流れ</h2>
       <div class="timeline">
         <article>
           <div class="time">01</div>
           <div>
             <h3>AIは中間層を消し、人間の職能を丸裸にする</h3>
-            <p>AIは「負荷試験」であり、今まで人生をかけて積んできた能力や役割がそのまま見えるようになる。必要とされる人はさらに必要とされ、そうでない人は仕事から遠ざかる。2割の人だけで仕事が回るような世界になるのでは、という危機感が語られています。</p>
+            <p>AIは「負荷試験」であり、今まで人生をかけて積んできた能力や役割がそのまま見えるようになる。必要とされる人はさらに必要とされ、そうでない人は仕事から遠ざかる。</p>
           </div>
         </article>
         <article>
           <div class="time">02</div>
           <div>
             <h3>便利になるはずなのに、人間の基準は上がり続ける</h3>
-            <p>AIで面倒なことが減れば本来は幸せになるはず。でも人間は一度上がった生活水準や仕事の基準を当たり前にしてしまう。だから、便利さが増えても不安や喪失感が消えるとは限らない、という視点です。</p>
+            <p>AIで面倒なことが減れば本来は幸せになるはず。でも人間は一度上がった生活水準や仕事の基準を当たり前にしてしまう。</p>
           </div>
         </article>
         <article>
           <div class="time">03</div>
           <div>
             <h3>歴史的にも職能は淘汰され、人は適応してきた</h3>
-            <p>過去にも芸能や職能が技術によって大きく変わった。上澄みの人は残るが、多くの人は別の仕事へ移る。AIでも同じことが、より広い範囲・より速い速度で起こるのではないかと話されています。</p>
+            <p>過去にも芸能や職能が技術によって変わった。AIでも同じことが、より広い範囲・より速い速度で起こるのではないかと話されている。</p>
           </div>
         </article>
         <article>
           <div class="time">04</div>
           <div>
-            <h3>ノアの方舟に乗れる人と乗れない人に分かれる</h3>
-            <p>AIによって余白が増え、本来人間が感じたり考えたりすることに時間を使える人もいる。一方で、その波に乗れない人は苦しくなる。良くなる人とダメージを受ける人が複雑に分かれる、という話です。</p>
+            <h3>余白が増える人と、苦しくなる人に分かれる</h3>
+            <p>AIによって本来人間が感じたり考えたりする時間を取り戻せる人もいる。一方で、波に乗れない人は苦しくなる。</p>
           </div>
         </article>
         <article>
           <div class="time">05</div>
           <div>
-            <h3>外貨・コミュニティ・子ども世代・法律の変化</h3>
-            <p>日本だけが変化に遅れる可能性があるなら、外貨を稼ぐことや、危機感を共有できるゆるいコミュニティが重要になる。子ども世代は仕事より遊びや感性の価値が増えるかもしれない、という話も出ています。</p>
+            <h3>外貨、共同体、次世代の価値</h3>
+            <p>外貨を稼ぐことや、危機感を共有できるゆるいコミュニティが重要になる。次世代では感性や遊びの価値も増えるかもしれない。</p>
           </div>
         </article>
         <article>
           <div class="time">06</div>
           <div>
-            <h3>自律的なAIが来たら、世界の速度差が決定的になる</h3>
-            <p>今より10倍ほど自律的に動くAIが来ると、信じられないほど強いループで仕事が回る。世界は10倍速くなるのに日本だけ1.2倍なら、差は一気に開く。AGI関連に真剣にベットする話まで出るほど、危機感は強いものでした。</p>
+            <h3>自律的なAIが来たら、速度差が決定的になる</h3>
+            <p>今より自律的なAIが来ると、仕事のループはさらに強く速くなる。世界が急加速する中で、適応の差が大きくなる危機感が語られていた。</p>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="essence">
-      <h2>本質</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>1. AIは能力差を隠さない</h3>
-          <p>今までは会社・肩書き・分業・人手不足が、人の能力差をぼかしてくれていました。AIが入ると、誰が判断できるのか、誰が価値を作れるのかが見えやすくなります。</p>
-        </article>
-        <article class="card">
-          <h3>2. 中間の仕事が薄くなる</h3>
-          <p>資料作成、分析、調整、作業代行のような「そこそこできる人が担っていた仕事」は、AIに吸収されやすい。だから、上位の判断・関係性・身体性・現場感に価値が寄っていきます。</p>
-        </article>
-        <article class="card">
-          <h3>3. 社会の速度差が怖い</h3>
-          <p>個人差だけでなく、国や会社の適応速度の差も広がります。世界が10倍で進むのに自分のいる場所だけ1.2倍だと、取り残される感覚が生まれます。</p>
-        </article>
-      </div>
-      <div class="quote" style="margin-top:16px;">
-        <p>この音声の怖さは、「AIに仕事を奪われる」より深いです。実際には、「今まで自分を支えていた価値の置き場所が変わるかもしれない」という喪失感でした。</p>
-      </div>
-    </section>
-
-    <section id="summary">
-      <h2>要約</h2>
-      <ul class="list">
-        <li><strong>AIは負荷試験。</strong> 人間が今まで積んできた職能や価値を丸裸にし、必要とされる人とそうでない人の差を広げる。</li>
-        <li><strong>仕事は2割の人で回るかもしれない。</strong> 28の法則のように、少数の人とAIで多くの業務が完結する未来が語られている。</li>
-        <li><strong>でも人間は適応する。</strong> 過去にも技術で職能は消えたが、人は別の仕事や生き方へ移ってきた。</li>
-        <li><strong>大事なのは現実を見る人を増やすこと。</strong> 波を止めるより、何が起きているかを共有し、向き合える人を増やす必要がある。</li>
-        <li><strong>日本の遅れがリスク。</strong> 世界がAIで急加速する中、日本だけ変化が遅いと、機会損失が大きくなる。</li>
-        <li><strong>残る価値は人間らしいものへ戻る。</strong> 自然、感性、身体性、コミュニティ、信頼、遊び、場づくりのようなものが重要になる。</li>
-      </ul>
-    </section>
-
-    <section id="communicate">
-      <h2>この危機感を人に伝えるなら</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>怖がらせる言い方</h3>
-          <p>「AIで仕事がなくなる」「乗り遅れたら終わる」だけだと、相手は防御に入ります。恐怖は伝わっても、行動にはつながりにくいです。</p>
-        </article>
-        <article class="card">
-          <h3>届きやすい言い方</h3>
-          <p>「AIは、人間が本当に何に価値を出しているかを見えやすくする。だから今、自分の価値の置き場所を見直したい」と言うほうが、受け取りやすいです。</p>
-        </article>
-        <article class="card">
-          <h3>伝える時の軸</h3>
-          <p>相手に不安を押しつけるより、「これからの変化をどう受け止めるか」「自分たちは何を準備するか」を一緒に考える入口にするのがよさそうです。</p>
-        </article>
-      </div>
-      <div class="quote" style="margin-top:16px;">
-        <p>伝える時の芯はこれです。<br>「AIに勝つ話」ではなく、「AI時代でも人間として何を大切にして、どこで価値を出すかを考え直す話」。</p>
-      </div>
-    </section>
-
-    <section id="transcript">
+    <section id="transcript" class="article">
       <h2>音声ごとのほぼ文字起こしメモ</h2>
-      <p class="notice">AQUAVoiceの文字起こしを元に、意味が通るように最低限だけ整えています。固有名詞や一部の語は聞き取りの誤差が残る可能性があります。</p>
+      <div class="note">
+        <p>AQUAVoiceの文字起こしを元に、意味が通るように最低限だけ整えています。固有名詞や一部の語は聞き取りの誤差が残る可能性があります。</p>
+      </div>
 
       <article class="transcript-block">
         <h3>01AQ <span class="tag">AIは負荷試験</span></h3>
@@ -526,28 +507,28 @@ AIができたら本来はみんなが超ハッピーになって、面倒なこ
         <h3>04AQ <span class="tag">余白と分断</span></h3>
         <p class="transcript">仕事で忙しいのが当たり前だったけれど、AIによって余白がどんどん増えていく。本来人間が考えること、感じること、取るべきことに割けるリソースが増える。これはいいことかもしれない。
 
-ただ、ノアの方舟に乗れた人と乗れなかった人が明確に分かれるイメージがある。ドライに言うと、今までが甘えすぎていたから一旦叩き落とされ、本能が目覚める人もいるかもしれない。逆に幸せになる人もいると思う。でも潰れてしまう人のほうが多いかもしれない。障害がある人など、今以上には上がらないと思われていた人が、AIでむしろ幸せになる可能性もある。良くなる人、ダメになる人は複雑に分かれる。</p>
+ただ、方舟に乗れた人と乗れなかった人が明確に分かれるイメージがある。今までが甘えすぎていたから一旦叩き落とされ、本能が目覚める人もいるかもしれない。逆に幸せになる人もいると思う。でも潰れてしまう人のほうが多いかもしれない。障害がある人など、AIでむしろ幸せになる可能性もある。良くなる人、ダメになる人は複雑に分かれる。</p>
       </article>
 
       <article class="transcript-block">
         <h3>05AQ <span class="tag">外貨・共同体・次世代</span></h3>
         <p class="transcript">私たちがどこに属するのか、何を共通認識として持つのかは大事。外貨を稼ぐことや、お金を使うことも含めて、ゆるいコミュニティができるといい。金額が少なくならないようにする、という話でもある。
 
-子どもたちの世代はどうなるのか。大人になったタイミングで、圧倒的に遊ぶだけの世代になるかもしれない。だからプログラミングより、歌や感性のようなものを覚えたほうがいいのでは、という話も出ていた。ここから調達の時代が一瞬バーンと来る感じがある。5年以内、遅くともそのくらいには日本の法律も変わるかもしれない。そうなった瞬間に、大きく変わる。</p>
+子どもたちの世代はどうなるのか。大人になったタイミングで、圧倒的に遊ぶだけの世代になるかもしれない。だからプログラミングより、歌や感性のようなものを覚えたほうがいいのでは、という話も出ていた。ここから調達の時代が一瞬来る感じがある。5年以内、遅くともそのくらいには日本の法律も変わるかもしれない。</p>
       </article>
 
       <article class="transcript-block">
         <h3>06AQ <span class="tag">自律AIと速度差</span></h3>
         <p class="transcript">今の10倍くらい自律的に動くAIが来たら、信じられないくらいのループの通し方をすると思う。その強いループに全部持っていかれる。世界は10倍になっているのに、日本だけ1.2倍のようなことが起きるのではないか。
 
-その段階では、AGI関連の株に現金を変えることまで考える。思っている以上に、少人数で世界が回るのではないか。我々が駆逐されないためにも、強くなるタイミングはあっという間に来る。モデルが変わるたびにできることが増えてきた経験から考えると、今後はもっと増える。機会損失が大きすぎるので、かなり真剣にベットしたほうがいい。今年中に一生分のお金を稼ぎきって、AGI株にしておくのが逃げる方法のひとつかもしれない、という強い危機感が語られていた。</p>
+その段階では、AGI関連の株に現金を変えることまで考える。思っている以上に、少人数で世界が回るのではないか。我々が駆逐されないためにも、強くなるタイミングはあっという間に来る。モデルが変わるたびにできることが増えてきた経験から考えると、今後はもっと増える。機会損失が大きすぎるので、かなり真剣にベットしたほうがいい、という強い危機感が語られていた。</p>
       </article>
     </section>
   </main>
 
   <footer>
     <div class="shell">
-      <p>作成日: 2026-05-24 / 元素材: AQUAVoice文字起こし + 音声ファイル 6本</p>
+      <p>作成日: 2026-05-24 / 元素材: AQUAVoice文字起こし + 音声ファイル6本 / 挿絵: Image2生成</p>
     </div>
   </footer>
 </body>
